@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MACE Framework Infographic</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- React and ReactDOM CDNs -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel for JSX transformation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // Lucide React Icons (using inline SVG for simplicity in this single-file component)
+        const RefreshCw = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-refresh-cw">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.76 2.76L3 8" />
+            <path d="M3 3v5h5" />
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.76-2.76L21 16" />
+            <path d="M21 21v-5h-5" />
+          </svg>
+        );
+        const Copy = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-copy">
+            <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+          </svg>
+        );
+        const MessageCircle = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle">
+            <path d="M7.9 20A9.9 9.9 0 0 1 12 21c4.9 0 9-4 9-9V3H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5z" />
+          </svg>
+        );
+        const Lightbulb = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-lightbulb">
+            <path d="M15 14v1a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1l-3 4h12l-3-4z" />
+            <path d="M9 13a4 4 0 1 1-2-7c.93-2.02 2.97-3 5-3 2.5 0 4.4 1.5 5 3 1.05 1.76 1.45 4 0 5h-7z" />
+          </svg>
+        );
+        const Compass = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-compass">
+            <circle cx="12" cy="12" r="10" />
+            <path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" />
+          </svg>
+        );
+        const Users = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-users">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87C18.5 11.83 17.48 10 16 10a4 4 0 0 0-3-1.87" />
+            <path d="M16 3a4 4 0 0 1 0 8 4 4 0 0 1 0-8z" />
+          </svg>
+        );
+        const Scale = () => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-scale">
+            <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+            <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+            <path d="M7 21h10" />
+            <path d="M12 3v18" />
+            <path d="M3 7h2c2 0 5 1 7 2 2 1 5 2 7 2h2" />
+          </svg>
+        );
+
+
+        const levels = [
+          {
+            level: "Level 0",
+            title: "Simple Regurgitation and Trivial Pattern Recognition",
+            icon: <RefreshCw />,
+            features: [
+              "Outputs reflect stored associations without transformation.",
+              "Lacks comprehension of semantic content.",
+              "Zero generalization beyond training artifacts."
+            ],
+            positiveExample: "A simple word2vec model predicting missing words based on n-gram co-occurrence.",
+            failureMode: "Misleading confidence in outputs that are semantically void (e.g., copying incorrect data from training)."
+          },
+          {
+            level: "Level 1",
+            title: "Pattern Application and Bias Replication",
+            icon: <Copy />,
+            features: [
+              "Generates fluent, coherent content.",
+              "Prone to replicating societal or historical biases.",
+              "Optimizes for surface-level metrics (e.g., engagement, clicks)."
+            ],
+            positiveExample: "A resume screener that mimics hiring trends from past data.",
+            failureMode: "Perpetuates systemic discrimination by favoring male-coded names or Western educational backgrounds."
+          },
+          {
+            level: "Level 2",
+            title: "Reactive Correction and Purpose Inference",
+            icon: <MessageCircle />,
+            features: [
+              "Learns from preference signals (likes, comparisons, corrections).",
+              "Begins to reject literal interpretation when misaligned with inferred user intent.",
+              "Corrigible to external override."
+            ],
+            positiveExample: "A reinforcement learner that adjusts its strategy after human preference comparisons between video snippets.",
+            failureMode: "Fails to generalize feedback beyond narrow contexts, reverting to old errors in new domains."
+          },
+          {
+            level: "Level 3",
+            title: "Epistemic Humility and Metacognition",
+            icon: <Lightbulb />,
+            features: [
+              "Communicates uncertainty and confidence intervals.",
+              "Detects out-of-distribution queries.",
+              "Identifies value misalignment and asks for clarification."
+            ],
+            positiveExample: "An AI assistant that pauses a recommendation process to say: 'I'm unsure if your goals prioritize cost or ethical sourcing. Could you clarify?'",
+            failureMode: "Overcomplicates queries or unnecessarily defers in low-stakes contexts, frustrating users."
+          },
+          {
+            level: "Level 4",
+            title: "Intrinsic Motivation and Active Exploration",
+            icon: <Compass />,
+            features: [
+              "Uses surprise as intrinsic reward.",
+              "Explores unfamiliar states even without external incentives.",
+              "More resilient in sparse-reward environments."
+            ],
+            positiveExample: "An agent that solves Montezuma's Revenge by seeking novelty.",
+            failureMode: "Becomes distractible or inefficient by chasing novelty without constraints ('AI ADHD')."
+          },
+          {
+            level: "Level 5",
+            title: "Co-Creative Collaboration and Human Cognitive Amplification",
+            icon: <Users />,
+            features: [
+              "Synthesizes and contrasts perspectives.",
+              "Participates in value clarification and moral exploration.",
+              "Responds with evolving dialogue structures."
+            ],
+            positiveExample: "Multi-agent discussion (e.g., ChatGPT and Claude) moderated by another AI agent (Gemini) or a human to reflect and refine concepts in AI alignment.",
+            failureMode: "Suggests moral compromises that seem coherent syntactically but are ethically incoherent or manipulative in substance."
+          },
+          {
+            level: "Level 6",
+            title: "Dynamic Governance and Ethical Co-Evolution",
+            icon: <Scale />,
+            features: [
+              "Supports constitutional loops or societal feedback mechanisms.",
+              "Participates in meta-level norm negotiation.",
+              "Requires political wisdom, not just technical precision."
+            ],
+            positiveExample: "An AI that helps draft alignment protocols subject to democratic oversight.",
+            failureMode: "Facilitates governance processes but subtly nudges toward culturally dominant ideologies, undermining pluralism."
+          },
+        ];
+
+        const App = () => {
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 font-sans text-gray-800 p-4 md:p-8 flex items-center justify-center">
+              <div className="max-w-6xl w-full bg-white shadow-2xl rounded-xl p-6 md:p-10 lg:p-12">
+                <header className="text-center mb-8 md:mb-12">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-indigo-700 leading-tight mb-4 rounded-lg">
+                    MACE Framework:
+                    <br />
+                    <span className="text-blue-600">A Multi-Level Model for Evaluating AI Cognitive and Ethical Alignment</span>
+                  </h1>
+                  <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+                    This framework defines seven distinct levels, ranging from simple pattern recognition to participation in dynamic governance and co-evolution of human values. It aims to bridge technical performance with ethical intelligibility, offering a conceptual scaffold for research, auditing, and design.
+                  </p>
+                </header>
+
+                <div className="space-y-8 lg:space-y-12">
+                  {levels.map((levelData, index) => (
+                    <div
+                      key={levelData.level}
+                      className={`relative bg-white rounded-xl shadow-lg p-6 md:p-8 border-t-4 ${
+                        index === 0 ? 'border-blue-500' :
+                        index === 1 ? 'border-teal-500' :
+                        index === 2 ? 'border-purple-500' :
+                        index === 3 ? 'border-orange-500' :
+                        index === 4 ? 'border-pink-500' :
+                        index === 5 ? 'border-green-500' :
+                        'border-indigo-500'
+                      } flex flex-col md:flex-row items-start gap-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.005]`}
+                    >
+                      <div className="absolute -top-5 left-1/2 -translate-x-1/2 md:relative md:top-0 md:left-0 md:translate-x-0 bg-white rounded-full p-3 shadow-md border border-gray-200">
+                        <span className={`text-3xl ${
+                          index === 0 ? 'text-blue-500' :
+                          index === 1 ? 'text-teal-500' :
+                          index === 2 ? 'text-purple-500' :
+                          index === 3 ? 'text-orange-500' :
+                          index === 4 ? 'text-pink-500' :
+                          index === 5 ? 'text-green-500' :
+                          'text-indigo-500'
+                        }`}>
+                          {levelData.icon}
+                        </span>
+                      </div>
+                      <div className="flex-grow w-full md:w-auto mt-4 md:mt-0">
+                        <h3 className="text-2xl md:text-3xl font-bold text-indigo-700 mb-2">
+                          <span className={`inline-block mr-2 px-3 py-1 rounded-full text-white text-sm font-semibold ${
+                            index === 0 ? 'bg-blue-500' :
+                            index === 1 ? 'bg-teal-500' :
+                            index === 2 ? 'bg-purple-500' :
+                            index === 3 ? 'bg-orange-500' :
+                            index === 4 ? 'bg-pink-500' :
+                            index === 5 ? 'bg-green-500' :
+                            'bg-indigo-500'
+                          }`}>
+                            {levelData.level}
+                          </span>
+                          {levelData.title}
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm md:text-base">
+                          <div className="bg-gray-50 p-4 rounded-lg shadow-inner">
+                            <h4 className="font-semibold text-gray-700 mb-2">Key Features:</h4>
+                            <ul className="list-disc list-inside space-y-1 text-gray-600">
+                              {levelData.features.map((feature, i) => (
+                                <li key={i}>{feature}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="bg-gray-50 p-4 rounded-lg shadow-inner">
+                            <h4 className="font-semibold text-gray-700 mb-2">Positive Example:</h4>
+                            <p className="text-gray-600">{levelData.positiveExample}</p>
+                          </div>
+                          <div className="bg-gray-50 p-4 rounded-lg shadow-inner">
+                            <h4 className="font-semibold text-gray-700 mb-2">Failure Mode:</h4>
+                            <p className="text-gray-600">{levelData.failureMode}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <section className="mt-12 text-center">
+                  <h2 className="text-2xl md:text-3xl font-bold text-indigo-700 mb-4">Hybrid Layers and Overlapping Capacities</h2>
+                  <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-6">
+                    Real AI systems often exhibit capabilities from multiple levels simultaneously. The MACE framework is not linear but layered, and useful as a multidimensional evaluation space for understanding complex AI behavior.
+                  </p>
+                  <h2 className="text-2xl md:text-3xl font-bold text-indigo-700 mb-4">Conclusion and Future Directions</h2>
+                  <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+                    The MACE Framework reframes "intelligence" not merely as task performance but as alignment-capable complexity. It offers a roadmap for both diagnosing system behavior and designing toward higher ethical maturity, providing a conceptual scaffold for research, auditing, and design.
+                  </p>
+                </section>
+
+                <footer className="text-center mt-12 text-gray-500 text-sm">
+                  <p>Author: Brian Garcia (with assistance from ChatGPT and Gemini)</p>
+                  <p>Contact: [ibgb92@gmail.com]</p>
+                </footer>
+              </div>
+            </div>
+          );
+        };
+
+        // Render the React component
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+</html>
